@@ -1,6 +1,3 @@
 #!/bin/bash
-<<<<<<< HEAD
-pwd \
-=======
 pwd 
->>>>>>> 9ef521c91c9f52795a4feeb40d4f35be285db10a
+
