@@ -1,2 +1,2 @@
 #!/bin/bash
-mpv --no-config --vo=tct StarWars IV
+telnet towel.blinkenlights.nl
