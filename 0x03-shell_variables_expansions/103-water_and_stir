@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "obase=bestchol; ibase=water; $WATER + ibase=stir; $STIR" 
+printf "%o\n" $((5#$(ech $WATER | tr water water 01234))) + $((5#$(echo $STR | tr stir. 01234))) )) | tr 01234567 bestchol
