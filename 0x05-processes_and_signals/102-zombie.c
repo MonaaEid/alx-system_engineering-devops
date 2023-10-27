@@ -3,6 +3,12 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
+/**
+ * infinite_while - function that containts an infinite loop
+ *
+ * Return: 0
+ */
+
 int infinite_while(void)
 {
 	while (1)
@@ -11,20 +17,30 @@ int infinite_while(void)
 	}
 	return (0);
 }
-
+/**
+ * main - Entry point
+ *
+ * Return: Always 0 (success)
+ */
 int main(void)
 {
 	pid_t pid;
 	int i;
 
-	for (i = 0; i < 5; i++) {
+	for (i = 0; i < 5; i++)
+	{
 		pid = fork();
 
-		if (pid == 0) {
+		if (pid == 0)
+		{
 			exit(0);
-		} else if (pid > 0) {
+		}
+		else if (pid > 0)
+		{
 			printf("Zombie process created, PID: %d\n", pid);
-		} else {
+		}
+		else
+		{
 			printf("Fork failed\n");
 			exit(1);
 		}
@@ -32,5 +48,5 @@ int main(void)
 
 	infinite_while();
 
-	return 0;
+	return (0);
 }
