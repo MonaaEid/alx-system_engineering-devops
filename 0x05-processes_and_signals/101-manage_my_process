@@ -5,7 +5,7 @@ pid_file="/var/run/my_process.pid"
 script_file="/tmp/my_process"
 
 function start_process {
-	if [ -f "$pid_file" ] && kill -0 $("cat "$pid_file"") 2>/dev/null; then
+	if [ -f "$pid_file" ] && kill -0 "$(cat "$pid_file")" 2>/dev/null; then
         echo "manage_my_process is already running"
         exit 1
     fi
@@ -19,24 +19,23 @@ function start_process {
 }
 
 function stop_process {
-	if [ ! -f "$pid_file" ] || ! kill -0 $((cat "$pid_file")) 2>/dev/null; then
+	if [ ! -f "$pid_file" ] || ! kill -0 "$(cat "$pid_file")" 2>/dev/null; then
         echo "manage_my_process is not running"
         exit 1
     fi
 
     echo "manage_my_process stopped"
-    kill $((cat "$pid_file"))
+    kill "$(cat "$pid_file")"
     rm "$pid_file"
 }
 
 function restart_process {
     stop_process
     start_process
-    echo "manage_my_process restarted"
 }
 
 case "$1" in
-    start)/
+    start)
         start_process;;
     stop)
         stop_process;;
