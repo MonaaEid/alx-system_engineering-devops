@@ -30,6 +30,7 @@ function stop_process {
 }
 
 function restart_process {
+    echo "manage_my_process restarted"
     stop_process
     start_process
 }
