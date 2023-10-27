@@ -10,7 +10,7 @@ function start_process {
         exit 1
     fi
 
-    echo "Starting manage_my_process..."
+    echo "manage_my_process started"
     while true; do
         echo "I am alive!" >> "$script_file"
         sleep 2
