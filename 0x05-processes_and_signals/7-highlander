@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
 # Define a function to handle SIGTERM signals
-function sigterm_handler {
-    echo "I am invincible!!!"
-    exit 0
-}
-
-# Register the sigterm_handler function to handle SIGTERM signals
-trap sigterm_handler SIGTERM
-
-# Display "To infinity and beyond" indefinitely with a sleep 2 in between each iteration
-while true
+trap 'echo "I am invincible!!!"' SIGTERM
+while :
 do
-    echo "To infinity and beyond"
-    sleep 2
+	echo "To infinity and beyond"
+	sleep 2
 done
