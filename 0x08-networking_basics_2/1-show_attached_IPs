@@ -1,17 +1,3 @@
 #!/usr/bin/env bash
 # Get all IP addresses
-ip_addresses=$(hostname -I)
-
-# Split IP addresses by space
-ip_addresses=(${ip_addresses// / })
-
-# Print each IP address line by line
-# echo "List of active IPv4 IPs:"
-for ip in "${ip_addresses[@]}"
-do
-    # Check if IP address is IPv4
-    if [[ $ip == *"."* ]]
-    then
-        echo "$ip"
-    fi
-done
+ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | cut -b 11-
