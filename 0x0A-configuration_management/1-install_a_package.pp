@@ -1,8 +1,6 @@
 # Using Puppet, install flask from pip3
-class { '::python':
-  pip_provider => 'pip3',
-}
-
-python::pip { 'flask':
-  ensure => '2.1.0',
+exec { 'install python packages':
+  command => 'pip3 install flask',
+  path    => ['/usr/bin/'],
+  unless  => '/usr/bin/test -f /usr/local/lib/python3.4/dist-packages/flask/app.py'
 }
