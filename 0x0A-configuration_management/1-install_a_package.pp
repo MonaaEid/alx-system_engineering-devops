@@ -1,6 +1,11 @@
 # Using Puppet, install flask from pip3
-exec { 'install python packages':
-  command => 'pip3 install flask',
-  path    => ['/usr/bin/'],
-  unless  => '/usr/bin/test -f /usr/local/lib/python3.4/dist-packages/flask/app.py'
+package { 'python3-pip':
+  ensure => installed,
 }
+
+exec { 'install_flask':
+  command => '/usr/bin/pip3 install Flask==2.1.0',
+  path    => '/usr/local/bin:/usr/bin:/bin',
+  unless  => '/usr/bin/pip3 show Flask | grep -q "Version: 2.1.0"',
+}
+
