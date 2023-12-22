@@ -1,8 +1,4 @@
 # Using Puppet, install flask from pip3
-class { 'python':
-  version => '3.8.10',
-}
-
 package { 'python3-pip':
   ensure => installed,
 }
@@ -24,29 +20,3 @@ exec { 'verify_python_version':
 
 package { 'python3-werkzeug':
   ensure => installed,
-}
-
-class python (
-  String $version = '3.8.10',
-) {
-  package { 'python3':
-    ensure => installed,
-  }
-
-  exec { 'set_python_alternative':
-    command => "/usr/bin/update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${version} 1",
-    unless  => "/usr/bin/python3 --version | grep -q 'Python ${version}'",
-  }
-}
-
-class pip {
-  package { 'python3-pip':
-    ensure => installed,
-  }
-}
-
-class werkzeug {
-  package { 'python3-werkzeug':
-    ensure => installed,
-  }
-}
