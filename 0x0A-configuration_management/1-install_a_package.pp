@@ -16,8 +16,3 @@ exec { 'install_flask':
   path    => '/usr/local/bin:/usr/bin:/bin',
   unless  => '/usr/bin/pip3 show Flask | grep -q "Version: 2.1.0"',
 }
-
-exec { 'verify_python_version':
-  command => '/usr/bin/python3 --version | grep -q "Python 3.8"',
-  path    => '/usr/local/bin:/usr/bin:/bin',
-}
