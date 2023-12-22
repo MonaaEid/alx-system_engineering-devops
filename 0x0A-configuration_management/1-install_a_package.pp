@@ -1,6 +1,12 @@
 # Using Puppet, install flask from pip3
-package { 'python3-pip':
-  ensure => installed,
+package { 'python3':
+  ensure   => '3.8.10',
+  provider => 'pip3'
+}
+
+package { 'Werkzeug':
+  ensure   => '2.1.1',
+  provider => 'pip3',
 }
 
 package { ['libffi-dev', 'libssl-dev', 'python3-dev']:
@@ -13,10 +19,3 @@ exec { 'install_flask':
   unless  => '/usr/bin/pip3 show Flask | grep -q "Version: 2.1.0"',
 }
 
-exec { 'verify_python_version':
-  command => '/usr/bin/python3 --version | grep -q "Python 3.8"',
-  path    => '/usr/local/bin:/usr/bin:/bin',
-}
-
-package { 'python3-werkzeug':
-  ensure => installed,
