@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-
+mkdir -p ~/.ssh/school
+echo public_key_string >> ~/.ssh/school/authorized_keys
+ssh ubuntu@449516-web-01
