@@ -5,7 +5,7 @@ sudo apt-get install nginx
 
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
-sudo ufw status
+# sudo ufw status
 # sudo service nginx status
 
 echo "<html><head><title>Test Page</title></head><body><h1>Hello World!</h1></body></html>" > /home/ubuntu/index.html
