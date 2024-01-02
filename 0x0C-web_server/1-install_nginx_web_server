@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
-sudo apt update
-sudo apt install nginx
+sudo apt-get update
+sudo apt-get install nginx
 
-sudo service nginx status
+sudo ufw app list
+sudo ufw allow 'Nginx HTTP'
+sudo ufw status
+# sudo service nginx status
 
 echo "<html><head><title>Test Page</title></head><body><h1>Hello World!</h1></body></html>" > /home/ubuntu/index.html
 sudo chown www-data:www-data /home/ubuntu/index.html
 sudo chmod 644 /home/ubuntu/index.html
 
-sudo sed -i 's|root /var/www/html;|root /home/ubuntu;|' /etc/nginx/sites-enabled/default
+# sudo sed -i 's|root /var/www/html;|root /home/ubuntu;|' /etc/nginx/sites-enabled/default
 
 sudo nginx -t
-sudo service nginx reload
+sudo service nginx start
 # Query Nginx at its root / with a GET request using curl
 # curl http://localhost/
