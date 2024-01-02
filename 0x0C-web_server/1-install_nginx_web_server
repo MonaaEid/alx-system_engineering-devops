@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
-sudo apt-get update
 sudo apt-get -y install nginx
 
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
 
-sudo chmod -R 755 /var/www/html
+sudo chmod -R 777 /var/www/html/
 echo "Hello World!" > /var/www/html/index.html
 
 # sudo sed -i 's|root /var/www/html;|root /home/ubuntu;|' /etc/nginx/sites-enabled/default
