@@ -5,16 +5,11 @@ sudo apt-get install nginx
 
 sudo ufw app list
 sudo ufw allow 'Nginx HTTP'
-# sudo ufw status
-# sudo service nginx status
 
-echo "Hello World!" > /var/www/xyzu/index.html
-# sudo chown www-data:www-data /home/ubuntu/index.html
-sudo chmod -R 755 /var/www/xyz
+sudo chmod -R 755 /var/www/html
+echo "Hello World!" > /var/www/html/index.html
 
 # sudo sed -i 's|root /var/www/html;|root /home/ubuntu;|' /etc/nginx/sites-enabled/default
 
 # sudo nginx -t
 sudo service nginx start
-# Query Nginx at its root / with a GET request using curl
-# curl http://localhost/
