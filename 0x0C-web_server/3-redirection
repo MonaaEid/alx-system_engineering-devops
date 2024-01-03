@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page.
+apt-get -y update
+apt-get -y install nginx
+
+echo "Hello World!" > /var/www/html/index.html
+new_string="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work  permanent;"
+sed -i "s/string_to_replace/$new_string/" /etc/nginx/sites-available/server_block_config
+
+service nginx start

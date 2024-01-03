@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Not found page 404
+apt-get -y update
+apt-get -y install nginx
+
+echo "Hello World!" > /var/www/html/index.html
+service nginx start
