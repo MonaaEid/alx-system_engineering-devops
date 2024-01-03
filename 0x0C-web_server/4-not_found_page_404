@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Not found page 404
-
+apt-get -y update
 apt-get -y install nginx
 echo "Hello World!" > /var/www/html/index.html
 sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
