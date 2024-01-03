@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Bash script that configures a new Ubuntu machine 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo service nginx start
+apt-get -y update
+apt-get -y install nginx
+
 # ufw allow 'Nginx HTTP'
 # chmod -R 755 /var/www/html
-sudo echo "Hello World!" > /var/www/html/index.html
-sudo service nginx restart
+echo "Hello World!" > /var/www/html/index.html
+service nginx start
