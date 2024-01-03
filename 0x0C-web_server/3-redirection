@@ -5,7 +5,8 @@ apt-get -y install nginx
 
 echo "Hello World!" > /var/www/html/index.html
 
-new_string="/redirect_me{\Redirect 301 / https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work  permanent;"
-sed -i "/redirect_me{/$new_string/" /etc/nginx/sites-available/default
+new_string="server_name _;\n\trewrite ^\/redirect_me https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work  permanent;"
+# new_string="/redirect_me{\Redirect 301 / https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work  permanent;"
+sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-available/default
 
 service nginx start
