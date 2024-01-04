@@ -11,7 +11,7 @@ file { '/var/www/html/index.html':
 file { '/var/www/html/404.html':
   content => "Ceci n'est pas une page\n",
 }
-exec {'sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default':
+exec {'sudo sed -i "s/listen 80 default_server;/listen 80 default_server;\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/https://www.youtube.com\/;\\n\\t}/" /etc/nginx/sites-available/default':
   provider => shell,
 }
 
