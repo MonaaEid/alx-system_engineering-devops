@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # LB_HOST=lb-01
-WEB1_HOST="449516-web-01"
-WEB2_HOST="449516-web-02"
-WEB1_IP="54.90.1.129"
-WEB2_IP="18.208.119.233"
+WEB1_HOST=449516-web-01
+WEB2_HOST=449516-web-02
+WEB1_IP=54.90.1.129
+WEB2_IP=18.208.119.233
 
 # Update the system
 sudo apt update
