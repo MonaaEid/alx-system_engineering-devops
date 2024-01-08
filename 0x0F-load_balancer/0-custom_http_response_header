@@ -3,15 +3,7 @@
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
+hn=$HOSTNAME
+echo "more_set_headers \"X-Served-By: $hn\";" | sudo tee -a /etc/nginx/nginx.conf
 
-
-hn=$ (hostname -f)
-
-echo "more_set_headers \"X-Served-By: $hn\";" > /etc/nginx/extra.d/custom-header.conf
-
-# Copy the file to the _custom directory to ensure the changes persist
-sudo cp /etc/nginx/extra.d/custom-header.conf /etc/nginx/extra.d/_custom/custom-header.conf
-
-sudo nginx -t
-sudo service nginx reload
-
+sudo service nginx start
