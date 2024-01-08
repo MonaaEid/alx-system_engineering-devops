@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-LB_USER=haproxy
 LB_HOST=lb-01
 WEB1_HOST="449516-web-01"
 WEB2_HOST="449516-web-02"
@@ -18,9 +17,9 @@ sudo useradd -s /bin/false $LB_USER
 sudo hostnamectl set-hostname $LB_HOST
 
 
-sudo echo "$WEB1_IP $WEB1_HOST" >> /etc/hosts
-sudo echo "$WEB2_IP $WEB2_HOST" >> /etc/hosts
-sudo echo "127.0.0.1 $LB_HOST" >> /etc/hosts
+# sudo echo "$WEB1_IP $WEB1_HOST" >> /etc/hosts
+# sudo echo "$WEB2_IP $WEB2_HOST" >> /etc/hosts
+# sudo echo "127.0.0.1 $LB_HOST" >> /etc/hosts
 
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
