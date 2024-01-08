@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LB_HOST=lb-01
+# LB_HOST=lb-01
 WEB1_HOST="449516-web-01"
 WEB2_HOST="449516-web-02"
 WEB1_IP="54.90.1.129"
@@ -12,9 +12,9 @@ sudo apt upgrade -y
 
 sudo apt install haproxy -y
 
-sudo useradd -s /bin/false $LB_USER
+# sudo useradd -s /bin/false $LB_USER
 
-sudo hostnamectl set-hostname $LB_HOST
+# sudo hostnamectl set-hostname $LB_HOST
 
 
 # sudo echo "$WEB1_IP $WEB1_HOST" >> /etc/hosts
