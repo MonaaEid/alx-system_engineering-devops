@@ -1,2 +1,42 @@
 #!/usr/bin/env bash
 
+LB_USER=haproxy
+LB_HOST=lb-01
+WEB1_HOST="449516-web-01"
+WEB2_HOST="449516-web-02"
+WEB1_IP="54.90.1.129"
+WEB2_IP="18.208.119.233"
+
+# Update the system
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install haproxy -y
+
+sudo useradd -s /bin/false $LB_USER
+
+sudo hostnamectl set-hostname $LB_HOST
+
+
+sudo echo "$WEB1_IP $WEB1_HOST" >> /etc/hosts
+sudo echo "$WEB2_IP $WEB2_HOST" >> /etc/hosts
+sudo echo "127.0.0.1 $LB_HOST" >> /etc/hosts
+
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+
+sudo cat > /etc/haproxy/haproxy.cfg <<EOF
+
+frontend http_front
+   bind *:80
+   stats uri /haproxy?stats
+   default_backend http_back
+
+backend http_back
+   balance roundrobin
+   server $WEB1_HOST $WEB1_IP:80 check
+   server $WEB2_HOST $WEB2_IP:80 check
+EOF
+
+# Enable and start HAproxy service
+sudo systemctl enable haproxy
+sudo systemctl start haproxy
