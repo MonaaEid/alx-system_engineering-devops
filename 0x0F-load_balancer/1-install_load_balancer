@@ -26,16 +26,4 @@ backend http_back
 EOF
 
 # Enable and start HAproxy service
-sudo systemctl enable haproxy
-sudo systemctl start haproxy
-
-
-
-# sudo useradd -s /bin/false $LB_USER
-
-# sudo hostnamectl set-hostname $LB_HOST
-
-
-# sudo echo "$WEB1_IP $WEB1_HOST" >> /etc/hosts
-# sudo echo "$WEB2_IP $WEB2_HOST" >> /etc/hosts
-# sudo echo "127.0.0.1 $LB_HOST" >> /etc/hosts
+sudo service haproxy restart
