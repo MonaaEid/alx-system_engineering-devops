@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# this is comment
 WEB1_HOST="449516-web-01"
 WEB2_HOST="449516-web-02"
 WEB1_IP="54.90.1.129"
