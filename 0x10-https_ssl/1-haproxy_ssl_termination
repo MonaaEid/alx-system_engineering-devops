@@ -1,0 +1,10 @@
+frontend www-https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.example.com/fullchain.pem
+    mode http
+    default_backend www-backend
+
+backend www-backend
+    mode http
+    balance roundrobin
+    server web1 <web_server_1_IP>:80 check
+    server web2 <web_server_2_IP>:80 check
