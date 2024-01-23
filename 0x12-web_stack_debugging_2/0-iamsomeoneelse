@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 # script that accepts one argument
-USERNAME="$1"
-su -c "whoami" -s /bin/bash $USERNAME
+su -c "whoami" -s /bin/bash "$1"
