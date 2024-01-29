@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""""""
+""" Python script to export data in the CSV format."""
 import csv
 import json
 import sys
@@ -7,7 +7,6 @@ import urllib.request
 
 
 if __name__ == "__main__":
-
     employee_id = sys.argv[1]
 
     url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
