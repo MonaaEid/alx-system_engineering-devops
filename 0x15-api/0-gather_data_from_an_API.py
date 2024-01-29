@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """using this REST API, for a given employee ID, returns
 information about his/her todo list progress."""
+import urllib.error
 import urllib.request
 import urllib.parse
-import urllib.error
 import json
 import sys
 
