@@ -1,39 +1,22 @@
 #!/usr/bin/python3
 """ Python script to export data in the CSV format."""
 import csv
-import json
+import requests
 import sys
-import urllib.request
-
 
 if __name__ == "__main__":
-    employee_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
-    with urllib.request.urlopen(url) as response:
-        data = json.loads(response.read().decode())
-        employee_name = data["name"]
-
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
-        employee_id)
-    with urllib.request.urlopen(url) as response:
-        data = json.loads(response.read().decode())
-
-    filename = "{}.csv".format(employee_id)
-    with open(filename, mode='w', newline='') as csv_file:
-        fieldnames = [
-            'USER_ID',
-            'USERNAME',
-            'TASK_COMPLETED_STATUS',
-            'TASK_TITLE']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        writer.writeheader()
-        for task in data:
-            writer.writerow(
-                {
-                    'USER_ID': employee_id,
-                    'USERNAME': employee_name,
-                    'TASK_COMPLETED_STATUS': 'completed' if task["completed"] else 'not completed',
-                    'TASK_TITLE': task["title"]})
-    print("Data written to file: {}".format(filename))
+    completed_tasks = [
+        (sys.argv[1],
+         user.get("name"),
+         t.get("completed"),
+         t.get("title")) for t in todos]
+    filename = "{}.csv".format(sys.argv[1])
+    with open(filename, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        writer.writerows(completed_tasks)

@@ -1,31 +1,15 @@
 #!/usr/bin/python3
 """using this REST API, for a given employee ID, returns
 information about his/her todo list progress."""
-import json
+import requests
 import sys
-import urllib.request
-
 
 if __name__ == "__main__":
-    url = "https://jsonplaceholder.typicode.com/users/{}".format(sys.argv[1])
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    with urllib.request.urlopen(url) as response:
-        data = json.loads(response.read().decode())
-        employee_name = data["name"]
-
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
-        sys.argv[1])
-    with urllib.request.urlopen(url) as response:
-        data = json.loads(response.read().decode())
-        total_number_of_tasks = len(data)
-        number_of_done_tasks = sum([1 for task in data if task["completed"]])
-
-    print("Employee {} is done with tasks({}/{}):".format(employee_name,
-          number_of_done_tasks, total_number_of_tasks))
-    for task in data:
-        if task["completed"]:
-            print("\t{} {}".format("\t", task["title"]))
-    # fhand = urllib.request.urlopen(url)
-    # for line in fhand:
-    #     print(line.decode().strip())
-    # print(fhand)
+    finished = [t.get("title") for t in todos if t.get("completed") is True]
+    print("Employee {} is done with tasks({}/{}):".format(
+        user.get("name"), len(finished), len(todos)))
+    [print("\t {}".format(i)) for i in finished]
