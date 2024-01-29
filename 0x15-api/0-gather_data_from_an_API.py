@@ -2,8 +2,8 @@
 """using this REST API, for a given employee ID, returns
 information about his/her todo list progress."""
 import json
-import urllib.request
 import sys
+import urllib.request
 
 
 if __name__ == "__main__":
