@@ -13,7 +13,7 @@ if __name__ == "__main__":
         data = json.loads(response.read().decode())
         employee_name = data["name"]
 
-    url = "https://jsonplaceholder.typicode.com/todos/userId={}".format(
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(
         sys.argv[1])
     with urllib.request.urlopen(url) as response:
         data = json.loads(response.read().decode())
