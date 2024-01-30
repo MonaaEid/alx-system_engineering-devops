@@ -6,10 +6,11 @@ import sys
 
 
 if __name__ == "__main__":
+    user_id = sys.argv[1]
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    user = requests.get(url + "users/{}".format(user_id)).json()
     username = user.get("username")
-    todo = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
+    todo = requests.get(url + "todos", params={"userId": user_id}).json()
 
     with open("{}.json".format(user), "w") as jsonfile:
         json.dump({user: [{
