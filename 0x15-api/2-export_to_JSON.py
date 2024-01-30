@@ -15,5 +15,3 @@ if __name__ == "__main__":
     filename = "{}.json".format(sys.argv[1])
     with open(filename, "w") as f:
         json.dump(data, f)
-
-    print("Data exported to file: {}".format(filename))
