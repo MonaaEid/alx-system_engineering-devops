@@ -1,20 +1,23 @@
 #!/usr/bin/python3
 """comment"""
+import csv
 import json
-import requests
 import sys
 
 
 if __name__ == "__main__":
-    user_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    username = user.get("username")
-    todos = requests.get(url + "todos", params={"userId": user_id}).json()
+    data = []
+    with open('tasks.csv') as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            if row['USER_ID'] == sys.argv[1]:
+                data.append({
+                    'task': row['TASK_TITLE'],
+                    'completed': row['TASK_COMPLETED_STATUS'] == 'True',
+                    'username': row['USERNAME']
+                })
 
-    with open("{}.json".format(user_id), "w") as jsonfile:
-        json.dump({user_id: [{
-                "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": username
-            } for t in todos]}, jsonfile)
+    json_string = json.dumps({sys.argv[1]: data})
+
+    with open(f'{sys.argv[1]}.json', 'w') as file:
+        file.write(json_string)
