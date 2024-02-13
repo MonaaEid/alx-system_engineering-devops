@@ -11,10 +11,10 @@ def number_of_subscribers(subreddit):
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {'User-Agent': 'Mozilla/5.0'}
     request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request) as response:
-        html = response.read()
+    with urllib.request.urlopen(request) as respose:
+        html = respose.read()
         data = json.loads(html)
-        if response.status == 200:
+        if respose.status == 200:
             return data.get('data').get('subscribers')
         else:
             return 0
